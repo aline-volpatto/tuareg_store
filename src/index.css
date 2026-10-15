@@ -1,0 +1,47 @@
+:root {
+  --cor-fundo: #faf6f0;
+  --cor-texto: #3d3229;
+  --cor-texto-suave: #443931;
+  --cor-borda: #e2d5c3;
+  --cor-destaque: #010201;
+  --cor-erro: #b06a4f;
+  --cor-sucesso: #6f8f6a;
+
+  --espaco-pequeno: 0.5rem;
+  --espaco-medio: 1rem;
+  --espaco-grande: 2rem;
+
+  --fonte: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --fonte-titulo: 'Playfair Display', Georgia, serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--fonte);
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+  min-height: 100vh;
+}
+
+h1 {
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  font-size: 1.8rem;
+  margin: 0;
+}
+
+h2 {
+  font-family: var(--fonte-titulo);
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+h3 {
+  font-family: var(--fonte-titulo);
+  font-weight: 600;
+}
