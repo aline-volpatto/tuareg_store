@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router';
-import Header from './components/header/Header';
-import Footer from './components/footer/Footer';
+import Header from './components/organisms/Header/Header';
+import Footer from './components/organisms/Footer/Footer';
 import Carrinho from './pages/carrinho/Carrinho';
 import Resultado from './pages/resultado/Resultado';
 import Pagamento from './pages/pagamento/Pagamento';
