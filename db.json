@@ -1,0 +1,175 @@
+{
+  "produtos": [
+    {
+      "id": "1",
+      "nome": "Moletom bolacha TUAREG TEAM",
+      "descricao": "Moletom confortável com a estampa bolacha do TUAREG TEAM.",
+      "preco": 199.7,
+      "categoria": "Masculino",
+      "imagem": "https://gcp-images.majestic.ink.rsvcloud.com/images/product_v2/main_image/2d76667c50039519c692d770eba1f6b7.webp",
+      "estoque": 5
+    },
+    {
+      "id": "2",
+      "nome": "Camiseta Mehari icon",
+      "descricao": "Camiseta com o ícone do Mehari, avião símbolo do time.",
+      "preco": 179,
+      "categoria": "Masculino",
+      "imagem": "https://gcp-images.majestic.ink.rsvcloud.com/images/product_v2/main_image/396d9eec483086e52f25f9ad53f43f37.webp",
+      "estoque": 8
+    },
+    {
+      "id": "3",
+      "nome": "Camiseta TUAREG ACROBATICS AIRCRAFT",
+      "descricao": "Camiseta com a aeronave de acrobacia da TUAREG em destaque.",
+      "preco": 179,
+      "categoria": "Masculino",
+      "imagem": "https://gcp-images.majestic.ink.rsvcloud.com/images/product_v2/main_image/fe7cc52188803e7bf16333410ec5b344.webp",
+      "estoque": 10
+    },
+    {
+      "id": "4",
+      "nome": "Camiseta TUAREG SQUARES",
+      "descricao": "Camiseta com arte geométrica em quadrados e o nome TUAREG.",
+      "preco": 179,
+      "categoria": "Masculino",
+      "imagem": "https://gcp-images.majestic.ink.rsvcloud.com/images/product_v2/main_image/231a954f50b7133757366969e0573db0.webp",
+      "estoque": 7
+    },
+    {
+      "id": "5",
+      "nome": "Camiseta TUAREG TEAM BRAZIL",
+      "descricao": "Camiseta do TUAREG TEAM com as cores do Brasil.",
+      "preco": 179,
+      "categoria": "Masculino",
+      "imagem": "https://gcp-images.majestic.ink.rsvcloud.com/images/product_v2/main_image/5b6b7bdd90dc0e625801b195af6da52d.webp",
+      "estoque": 9
+    },
+    {
+      "id": "6",
+      "nome": "Camiseta TUAREG ACRO NAIPES",
+      "descricao": "Camiseta com os naipes do baralho em estilo acrobático.",
+      "preco": 179,
+      "categoria": "Masculino",
+      "imagem": "https://gcp-images.majestic.ink.rsvcloud.com/images/product_v2/main_image/cc6992e07dae90df6bb73da571c28a38.webp",
+      "estoque": 5
+    },
+    {
+      "id": "7",
+      "nome": "Camiseta premium mascote Velociraptor da VELOCIKART",
+      "descricao": "Camiseta premium com o mascote Velociraptor da coleção VELOCIKART.",
+      "preco": 149,
+      "categoria": "Masculino",
+      "imagem": "https://gcp-images.majestic.ink.rsvcloud.com/images/product_v2/main_image/0b0fc9fd543faca0ea4b79bef64f34dd.webp",
+      "estoque": 3
+    },
+    {
+      "id": "8",
+      "nome": "Moletom cropped feminino",
+      "descricao": "Moletom cropped com modelagem curta e estampa da TUAREG.",
+      "preco": 199,
+      "categoria": "Feminino",
+      "imagem": "https://gcp-images.majestic.ink.rsvcloud.com/images/product_v2/main_image/5676518b06474c736e9837f08e2771e4.webp",
+      "estoque": 3
+    },
+    {
+      "id": "9",
+      "nome": "Moletom cropped código SDEN",
+      "descricao": "Moletom cropped com a estampa do código SDEN.",
+      "preco": 159,
+      "categoria": "Feminino",
+      "imagem": "https://gcp-images.majestic.ink.rsvcloud.com/images/product_v2/main_image/4868ab689fd9b0f4ed3433061336b46e.webp",
+      "estoque": 2
+    },
+    {
+      "id": "10",
+      "nome": "Camiseta cropped MEHARI ICON",
+      "descricao": "Camiseta cropped com o ícone do Mehari.",
+      "preco": 99,
+      "categoria": "Feminino",
+      "imagem": "https://gcp-images.majestic.ink.rsvcloud.com/images/product_v2/main_image/ae174b0dbb0e3d77e1d79e9c1f9743bd.webp",
+      "estoque": 6
+    },
+    {
+      "id": "11",
+      "nome": "Camiseta cropped código SDEN",
+      "descricao": "Camiseta cropped com a estampa do código SDEN.",
+      "preco": 109,
+      "categoria": "Feminino",
+      "imagem": "https://gcp-images.majestic.ink.rsvcloud.com/images/product_v2/main_image/14dbaa4a1dbcece0f3cb81bf4b412297.webp",
+      "estoque": 4
+    },
+    {
+      "id": "12",
+      "nome": "Camiseta cropped BE INVERTED",
+      "descricao": "Camiseta cropped da coleção Inverted Life, para quem vive de cabeça para baixo.",
+      "preco": 89,
+      "categoria": "Feminino",
+      "imagem": "https://gcp-images.majestic.ink.rsvcloud.com/images/product_v2/main_image/92b6f3f610c01ecefc2106fb7fae7f95.webp",
+      "estoque": 5
+    },
+    {
+      "id": "13",
+      "nome": "Camiseta cropped TUAREG TEAM BRAZIL",
+      "descricao": "Camiseta cropped do TUAREG TEAM com as cores do Brasil.",
+      "preco": 89,
+      "categoria": "Feminino",
+      "imagem": "https://gcp-images.majestic.ink.rsvcloud.com/images/product_v2/main_image/dac6cd277ab77a97aaafb31299446a34.webp",
+      "estoque": 7
+    },
+    {
+      "id": "14",
+      "nome": "Camiseta TUAREG KIDS logo TUAREG",
+      "descricao": "Camiseta infantil com o logo da TUAREG, para os pequenos pilotos.",
+      "preco": 99,
+      "categoria": "Infantil",
+      "imagem": "https://gcp-images.majestic.ink.rsvcloud.com/images/product_v2/main_image/eaf985ddcc12a32169ef818ce585a683.webp",
+      "estoque": 1
+    },
+    {
+      "id": "15",
+      "nome": "Camiseta TUAREG KIDS Mehari",
+      "descricao": "Camiseta infantil com a arte do Mehari.",
+      "preco": 99,
+      "categoria": "Infantil",
+      "imagem": "https://gcp-images.majestic.ink.rsvcloud.com/images/product_v2/main_image/3040d4e01ea239faed673e7dcf64a7b0.webp",
+      "estoque": 6
+    },
+    {
+      "id": "16",
+      "nome": "Camiseta infantil TOP MEHARI WINGS",
+      "descricao": "Camiseta infantil com as asas do Mehari.",
+      "preco": 89,
+      "categoria": "Infantil",
+      "imagem": "https://gcp-images.majestic.ink.rsvcloud.com/images/product_v2/main_image/90bf5489340584a478458f1cfbacc4e4.webp",
+      "estoque": 4
+    },
+    {
+      "id": "17",
+      "nome": "Camiseta infantil BRASÃO TUAREG ACADEMY",
+      "descricao": "Camiseta infantil com o brasão da TUAREG ACADEMY.",
+      "preco": 89,
+      "categoria": "Infantil",
+      "imagem": "https://gcp-images.majestic.ink.rsvcloud.com/images/product_v2/main_image/1ad985649f64d839a1112b1fe53f9406.webp",
+      "estoque": 5
+    },
+    {
+      "id": "18",
+      "nome": "Camiseta infantil TUAREG AIRMANSHIP",
+      "descricao": "Camiseta infantil com a arte TUAREG AIRMANSHIP.",
+      "preco": 89,
+      "categoria": "Infantil",
+      "imagem": "https://gcp-images.majestic.ink.rsvcloud.com/images/product_v2/main_image/15fad7620386f3ca6b6e3e81e294ad34.webp",
+      "estoque": 8
+    },
+    {
+      "id": "19",
+      "nome": "Body kid código SDEN",
+      "descricao": "Body infantil com a estampa do código SDEN.",
+      "preco": 89,
+      "categoria": "Infantil",
+      "imagem": "https://gcp-images.majestic.ink.rsvcloud.com/images/product_v2/main_image/96e53beb98573663ae668d4ce02d8802.webp",
+      "estoque": 3
+    }
+  ]
+}
