@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { pagamentoSchema } from "../../utils/pagamentoSchema";
 import { cartaoSuspeito } from "../../utils/verificarGolpe";
 import { usePagamento } from "../../hooks/usePagamento";
-import CampoFormulario from "../../components/campoFormulario/CampoFormulario";
+import CampoFormulario from "../../components/molecules/CampoFormulario/CampoFormulario";
 import styles from "./Pagamento.module.css";
 
 function Pagamento() {
