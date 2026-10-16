@@ -1,5 +1,5 @@
 
-const mensagemErro = "Não foi possível carregar o valor, tente novamente.";
+export const mensagemErro = "Não foi possível carregar o valor, tente novamente.";
 
 export function formatarMoeda(valor) {
 
