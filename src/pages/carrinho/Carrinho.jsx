@@ -1,5 +1,5 @@
 import {produtos} from "../../data/produtos";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 import ItemCarrinho from "../../components/molecules/ItemCarrinho/ItemCarrinho";
 import styles from './Carrinho.module.css';
 

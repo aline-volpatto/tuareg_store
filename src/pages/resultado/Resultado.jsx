@@ -1,4 +1,4 @@
-import { useParams, Link } from "react-router";
+import { useParams, Link } from "react-router-dom";
 import styles from "./Resultado.module.css";
 
 function Resultado() {
