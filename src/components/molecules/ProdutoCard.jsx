@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
 import { formatarMoeda } from "../../utils/moeda";
+import PropTypes from 'prop-types';
+
+
 
 function ProdutoCard({ produto }) {
   return (
@@ -13,5 +16,15 @@ function ProdutoCard({ produto }) {
     </article>
   );
 }
+
+ProdutoCard.propTypes = {
+  produto: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    nome: PropTypes.string.isRequired,
+    categoria: PropTypes.string.isRequired,
+    preco: PropTypes.number.isRequired,
+    imagem: PropTypes.string.isRequired,
+  }).isRequired,
+};
 
 export default ProdutoCard;
