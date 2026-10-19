@@ -2,12 +2,14 @@ import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { buscarProdutoPorId } from "../../services/api";
 import { formatarMoeda } from "../../utils/moeda";
+import { useCarrinho } from "../../hooks/useCarrinho";
 
 function DetalheProduto() {
   const { id } = useParams();
   const [produto, setProduto] = useState(null);
   const [carregando, setCarregando] = useState(true);
   const [erro, setErro] = useState(null);
+  const { adicionarItem } = useCarrinho();
 
   useEffect(() => {
     async function carregarProduto() {
@@ -52,7 +54,7 @@ function DetalheProduto() {
       <p>
         Estoque: {produto.estoque} {produto.estoque === 1 ? "unidade" : "unidades"}
       </p>
-      <button type="button">Adicionar ao carrinho</button>
+      <button type="button" onClick={() => adicionarItem(produto)}>Adicionar ao carrinho</button>
     </article>
   );
 }
