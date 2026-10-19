@@ -6,34 +6,56 @@ export function CarrinhoProvider({ children }) {
   const [itens, setItens] = useState([]);
 
   function adicionarItem(item) {
-    setItens((itensAnteriores) => { 
-        const jaEstaNoCarrinho = itensAnteriores.some((itemNoCarrinho) => itemNoCarrinho.id === item.id);
+    setItens((itensAnteriores) => {
+      const jaEstaNoCarrinho = itensAnteriores.some(
+        (itemNoCarrinho) => itemNoCarrinho.id === item.id,
+      );
 
-        if (!jaEstaNoCarrinho) {
-            return [...itensAnteriores, { ...item, quantidade: 1 }];
+      if (!jaEstaNoCarrinho) {
+        return [...itensAnteriores, { ...item, quantidade: 1 }];
+      }
+
+      return itensAnteriores.map((itemNoCarrinho) => {
+        if (itemNoCarrinho.id === item.id) {
+          return {
+            ...itemNoCarrinho,
+            quantidade: Math.min(
+              itemNoCarrinho.quantidade + 1,
+              itemNoCarrinho.estoque,
+            ),
+          };
         }
-
-        return itensAnteriores.map((itemNoCarrinho) => {
-            if (itemNoCarrinho.id === item.id) {
-                return { ...itemNoCarrinho, quantidade: Math.min (itemNoCarrinho.quantidade + 1, itemNoCarrinho.estoque) };
-            }
-            return itemNoCarrinho;
-        });
+        return itemNoCarrinho;
+      });
     });
   }
 
+  function alterarQuantidade(itemId, novaQuantidade) {
+    setItens((itensAnteriores) => {
+      return itensAnteriores.map((item) => {
+        if (item.id === itemId) {
+          return {
+           ...item, quantidade: Math.min(Math.max(novaQuantidade, 1), item.estoque)};
+        }
+        return item;
+      });
+    });
+  }
 
   function removerItem(itemId) {
-    setItens((itensAnteriores) => itensAnteriores.filter((item) => item.id !== itemId));
+    setItens((itensAnteriores) =>
+      itensAnteriores.filter((item) => item.id !== itemId),
+    );
   }
 
   function limparCarrinho() {
     setItens([]);
   }
-  
- 
+
   return (
-    <CarrinhoContext.Provider value={{ itens, adicionarItem, removerItem, limparCarrinho }}>
+    <CarrinhoContext.Provider
+      value={{ itens, adicionarItem, removerItem, limparCarrinho }}
+    >
       {children}
     </CarrinhoContext.Provider>
   );
