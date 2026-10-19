@@ -1,7 +1,12 @@
 import styles from './Header.module.css';
 import { Link } from 'react-router-dom'
+import Badge from "@mui/material/Badge";
+import { useCarrinho } from '../../../hooks/useCarrinho';
 
 function Header() {
+
+  const { quantidadeTotal } = useCarrinho();
+
   return (
     <header className={styles.header}>
       <Link to="/produtos" className={styles.logo}>
@@ -10,7 +15,11 @@ function Header() {
 
       <nav aria-label="Menu de navegação" className={styles.nav}>
         <Link to="/produtos">Produtos</Link>
-        <Link to="/carrinho">Carrinho</Link>
+        <Link to="/carrinho" aria-label={`Carrinho com (${quantidadeTotal} itens)`}>
+          <Badge badgeContent={quantidadeTotal} color="primary">
+            Carrinho
+          </Badge>
+        </Link>
       </nav>
     </header>
   );
