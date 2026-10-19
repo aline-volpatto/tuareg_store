@@ -1,4 +1,5 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useMemo } from "react";
+import { calcularTotal, calcularQuantidadeTotal } from "../utils/carrinho";
 
 export const CarrinhoContext = createContext(null);
 
@@ -35,7 +36,9 @@ export function CarrinhoProvider({ children }) {
       return itensAnteriores.map((item) => {
         if (item.id === itemId) {
           return {
-           ...item, quantidade: Math.min(Math.max(novaQuantidade, 1), item.estoque)};
+            ...item,
+            quantidade: Math.min(Math.max(novaQuantidade, 1), item.estoque),
+          };
         }
         return item;
       });
@@ -52,9 +55,23 @@ export function CarrinhoProvider({ children }) {
     setItens([]);
   }
 
+  const quantidadeTotal = useMemo(
+    () => calcularQuantidadeTotal(itens),
+    [itens],
+  );
+  const valorTotal = useMemo(() => calcularTotal(itens), [itens]);
+
   return (
     <CarrinhoContext.Provider
-      value={{ itens, adicionarItem, removerItem, limparCarrinho }}
+      value={{
+        itens,
+        adicionarItem,
+        removerItem,
+        alterarQuantidade,
+        limparCarrinho,
+        quantidadeTotal,
+        valorTotal,
+      }}
     >
       {children}
     </CarrinhoContext.Provider>
