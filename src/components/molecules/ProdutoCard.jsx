@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { formatarMoeda } from "../../utils/moeda";
 import PropTypes from 'prop-types';
 import { useCarrinho } from "../../hooks/useCarrinho";
+import styles from "./ProdutoCard.module.css";
+import Button from "@mui/material/Button";
 
 
 
@@ -9,13 +11,29 @@ function ProdutoCard({ produto }) {
   const { adicionarItem } = useCarrinho();
 
   return (
-    <article>
-      <img src={produto.imagem} alt={produto.nome} />
-      <h3>{produto.nome}</h3>
-      <p>{produto.categoria}</p> 
-      <p>{formatarMoeda(produto.preco)}</p>
-      <Link to={`/produtos/${produto.id}`}> Ver detalhes </Link>
-        <button type="button" onClick={() => adicionarItem(produto)}>Adicionar ao Carrinho</button>
+    <article className={styles.card}>
+      <img src={produto.imagem} alt={produto.nome} className={styles.imagem}   />
+      <h3 className={styles.nome}>{produto.nome}</h3>
+      <p className={styles.categoria}>{produto.categoria}</p> 
+      <p className={styles.preco}>{formatarMoeda(produto.preco)}</p>
+      <Link to={`/produtos/${produto.id}`} className={styles.detalhes}>
+        Ver detalhes
+      </Link>
+       <div className={styles.acao}>
+        <Button
+          variant="contained"
+          fullWidth
+          onClick={() => adicionarItem(produto)}
+          sx={{
+            backgroundColor: "var(--cor-bordo)",
+            fontWeight: 600,
+            textTransform: "none",
+            "&:hover": { backgroundColor: "var(--cor-bordo-escuro)" },
+          }}
+        >
+          Adicionar ao carrinho
+        </Button>
+      </div>
     </article>
   );
 }
