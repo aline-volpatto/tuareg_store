@@ -1,4 +1,4 @@
-import { createContext, useState, useMemo } from "react";
+import { createContext, useState, useMemo, useCallback } from "react";
 import { calcularTotal, calcularQuantidadeTotal } from "../utils/carrinho";
 
 export const CarrinhoContext = createContext(null);
@@ -6,7 +6,7 @@ export const CarrinhoContext = createContext(null);
 export function CarrinhoProvider({ children }) {
   const [itens, setItens] = useState([]);
 
-  function adicionarItem(item) {
+  const adicionarItem = useCallback((item) => {
     setItens((itensAnteriores) => {
       const jaEstaNoCarrinho = itensAnteriores.some(
         (itemNoCarrinho) => itemNoCarrinho.id === item.id,
@@ -29,9 +29,9 @@ export function CarrinhoProvider({ children }) {
         return itemNoCarrinho;
       });
     });
-  }
+  }, []);
 
-  function alterarQuantidade(itemId, novaQuantidade) {
+  const alterarQuantidade = useCallback((itemId, novaQuantidade) => {
     setItens((itensAnteriores) => {
       return itensAnteriores.map((item) => {
         if (item.id === itemId) {
@@ -43,17 +43,17 @@ export function CarrinhoProvider({ children }) {
         return item;
       });
     });
-  }
+  }, []);
 
-  function removerItem(itemId) {
+  const removerItem = useCallback((itemId) => {
     setItens((itensAnteriores) =>
       itensAnteriores.filter((item) => item.id !== itemId),
     );
-  }
+  }, []);
 
-  function limparCarrinho() {
+  const limparCarrinho = useCallback(() => {
     setItens([]);
-  }
+  }, []);
 
   const quantidadeTotal = useMemo(
     () => calcularQuantidadeTotal(itens),
