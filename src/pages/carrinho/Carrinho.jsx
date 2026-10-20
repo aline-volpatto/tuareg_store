@@ -10,7 +10,7 @@ function Carrinho() {
     const { itens, valorTotal } = useCarrinho();
 
      function finalizarCompra(){
-        navigate('/pagamento', { state: { valorTotal } });
+        navigate('/pagamento');
     }
 
     if (itens.length === 0) {
@@ -27,7 +27,7 @@ function Carrinho() {
     
 
     return (
-        <div className={styles.container}>
+        <section className={styles.container}>
             <h1 className={styles.titulo}>Carrinho de Compras</h1>
             <ul className={styles.lista}>
                 {itens.map((item) => (
@@ -38,7 +38,7 @@ function Carrinho() {
             <button type="button" className={styles.botao} onClick={finalizarCompra}>
                 Finalizar Compra
             </button>
-        </div>
+        </section>
     );
 }
 
