@@ -3,6 +3,19 @@ import PropTypes from 'prop-types';
 import { useCarrinho } from '../../../hooks/useCarrinho';
 import { formatarMoeda } from '../../../utils/moeda';
 import { calcularSubtotal } from '../../../utils/carrinho';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+
+
+
+const estiloBotaoQuantidade = {
+  width: 36,
+  height: 36,
+  fontSize: "1.2rem",
+  fontWeight: 700,
+  color: "var(--cor-preto)",
+};
+
 
 function ItemCarrinho({ item }) {
 
@@ -10,38 +23,50 @@ function ItemCarrinho({ item }) {
 
     return (
         <li className={styles.card}>
-            <img src={item.imagem} alt={item.nome} />
-            <h3>{item.nome}</h3>
-            <p>Valor unitário: {formatarMoeda(item.preco)}</p>
+            <img src={item.imagem} alt={item.nome} className={styles.imagem} />
 
-            <div>
-                <button
-                    type="button"
+            <div className={styles.info}>
+            <h3 className={styles.nome}>{item.nome}</h3>
+            <p className={styles.unitario}>Valor unitário: {formatarMoeda(item.preco)}</p>
+            </div>
+
+            <div className={styles.controles}>
+            <div className={styles.quantidade}>
+
+                <IconButton
                     onClick={() => alterarQuantidade(item.id, item.quantidade - 1)}
                     disabled={item.quantidade <= 1}
                     aria-label={`Diminuir quantidade de ${item.nome}`}
+                    sx={estiloBotaoQuantidade}
                 >
                     -
-                </button>
+                </IconButton>
                 <span>{item.quantidade}</span>
-                <button
-                    type="button"
+                <IconButton
                     onClick={() => alterarQuantidade(item.id, item.quantidade + 1)}
                     disabled={item.quantidade >= item.estoque}
                     aria-label={`Aumentar quantidade de ${item.nome}`}
+                    sx={estiloBotaoQuantidade}
                 >
                     +
-                </button>
+                </IconButton>
             </div>
 
-            <p>Subtotal: {formatarMoeda(calcularSubtotal(item))}</p>
+            <p className={styles.subtotal}> {formatarMoeda(calcularSubtotal(item))}</p>
 
-            <button
-                type="button"
-                onClick={() => removerItem(item.id)}
-            >
-                Remover
-            </button>
+            <Button
+          variant="text"
+          onClick={() => removerItem(item.id)}
+          sx={{
+            color: "var(--cor-bordo)",
+            fontWeight: 600,
+            textTransform: "none",
+          }}
+                >
+                    Remover
+                </Button>
+            </div>
+
         </li>
     );
 }

@@ -1,22 +1,70 @@
 .card {
-  background: rgba(255, 255, 255, 0.55);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  border-radius: 16px;
-  padding: var(--espaco-medio);
-  margin-bottom: var(--espaco-medio);
   list-style: none;
-  box-shadow: 0 8px 24px rgba(50, 76, 41, 0.15);
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: var(--espaco-m);
+  align-items: center;
+  background-color: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  padding: var(--espaco-m);
 }
 
-.card h3 {
-    margin: 0 0 var(--espaco-pequeno) 0;
-    font-size: 1.1rem;
+.imagem {
+  width: 80px;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  grid-row: span 2;
 }
 
-.card p {
-    margin: 0.25rem 0;
-    color: var(--cor-texto-suave);
-    font-size: 0.95rem;
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nome {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.unitario {
+  font-size: 0.85rem;
+  color: var(--cor-texto-suave);
+}
+
+.controles {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--espaco-m);
+}
+
+.quantidade {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+}
+
+.quantidade span {
+  min-width: 32px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.subtotal {
+  font-weight: 700;
+}
+
+@media (min-width: 768px) {
+  .card {
+    grid-template-columns: 100px 1fr auto;
+  }
+
+  .imagem {
+    width: 100px;
+    grid-row: auto;
+  }
 }
