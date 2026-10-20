@@ -1,21 +1,19 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { pagamentoSchema } from "../../utils/pagamentoSchema";
 import { cartaoSuspeito } from "../../utils/verificarGolpe";
 import { usePagamento } from "../../hooks/usePagamento";
+import { useCarrinho } from "../../hooks/useCarrinho";
+import { formatarMoeda } from "../../utils/moeda";
 import CampoFormulario from "../../components/molecules/CampoFormulario/CampoFormulario";
 import styles from "./Pagamento.module.css";
 
 function Pagamento() {
-  const localizacao = useLocation();
   const navigate = useNavigate();
   const { processando, processarCompra } = usePagamento();
-  let valorTotal;
+  const { valorTotal } = useCarrinho();
 
-  if (localizacao.state) {
-    valorTotal = localizacao.state.valorTotal;
-  }
 
   const {
     register,
@@ -28,24 +26,18 @@ function Pagamento() {
   function processarPagamento(dados) {
     processarCompra(() => {
       if (cartaoSuspeito(dados.numeroCartao)) {
-        navigate("/resultado/falha");
+        navigate("/falha");
       } else {
-        navigate("/resultado/sucesso");
+        navigate("/sucesso");
       }
     });
   }
 
   return (
-    <div className={styles.container}>
+    <section className={styles.container}>
       <h1 className={styles.titulo}>Pagamento</h1>
       <p className={styles.total}>
-        Valor Total:{" "}
-        {valorTotal
-          ? valorTotal.toLocaleString("pt-BR", {
-              style: "currency",
-              currency: "BRL",
-            })
-          : "não informado"}
+        Valor Total: {formatarMoeda(valorTotal)}
       </p>
 
       <form onSubmit={handleSubmit(processarPagamento)}>
@@ -79,7 +71,7 @@ function Pagamento() {
           {processando ? "Processando compra..." : "Realizar pagamento"}
         </button>
       </form>
-    </div>
+    </section>
   );
 }
 
