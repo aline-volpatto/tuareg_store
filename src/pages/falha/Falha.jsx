@@ -1,13 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
-import PaginaMensagem from "../../components/templates/PaginaMensagem";
-import escudo from "../../assets/tuareg-escudo.png";
+import PaginaMensagem from "../../components/templates/PaginaMensagem/PaginaMensagem";
+import logot from "../../assets/logot.png";
 
 function Falha() {
   const navigate = useNavigate();
 
   return (
-    <PaginaMensagem icone={escudo} titulo="Não foi possível concluir a compra">
+    <PaginaMensagem icone={logot} titulo="Não foi possível concluir a compra">
       <p role="alert" style={{ color: "var(--cor-erro)", fontWeight: 700 }}>
         tentativa de golpe
       </p>
