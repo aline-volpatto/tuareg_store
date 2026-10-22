@@ -69,3 +69,8 @@ main {
   margin: 0 auto;
   padding: var(--espaco-g) var(--espaco-m);
 }
+
+.link-destaque {
+  color: var(--cor-bordo);
+  font-weight: 600;
+}
