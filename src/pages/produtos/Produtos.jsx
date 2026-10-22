@@ -3,6 +3,7 @@ import { useProdutos } from "../../hooks/useProdutos";
 import { filtrarProdutos } from "../../utils/busca";
 import CampoBusca from "../../components/atoms/CampoBusca";
 import ListaProdutos from "../../components/organisms/ListaProdutos";
+import Button from "@mui/material/Button";
 
 function Produtos() {
   const { produtos, carregando, error } = useProdutos();
@@ -30,9 +31,24 @@ function Produtos() {
       <CampoBusca valor={termoBusca} aoMudar={setTermoBusca} />
 
 {termoBusca !== "" && (
-  <button type="button" onClick={() => setTermoBusca("")}>
+ <Button
+    variant="outlined"
+    onClick={() => setTermoBusca("")}
+    sx={{
+      color: "var(--cor-preto)",
+      borderColor: "var(--cor-preto)",
+      fontWeight: 600,
+      textTransform: "none",
+      marginBottom: "var(--espaco-m)",
+      "&:hover": {
+        borderColor: "var(--cor-bordo)",
+        color: "var(--cor-bordo)",
+        backgroundColor: "transparent",
+      },
+    }}
+  >
     Limpar busca
-  </button>
+  </Button>
 )}
 
 {produtosFiltrados.length === 0 ? (

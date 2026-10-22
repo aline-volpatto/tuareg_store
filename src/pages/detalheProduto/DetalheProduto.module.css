@@ -1,0 +1,68 @@
+.detalhe {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--espaco-g);
+  background-color: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  padding: var(--espaco-m);
+}
+
+.imagem {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  background-color: #ffffff;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-m);
+}
+
+.categoria {
+  font-size: 0.85rem;
+  color: var(--cor-texto-suave);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.nome {
+  font-size: 1.75rem;
+  line-height: 1.2;
+}
+
+.descricao {
+  color: var(--cor-texto-suave);
+}
+
+.preco {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.estoque {
+  font-size: 0.9rem;
+  color: var(--cor-texto-suave);
+}
+
+.voltar {
+  display: inline-block;
+  margin-bottom: var(--espaco-m);
+  color: var(--cor-bordo);
+  font-weight: 600;
+}
+
+.mensagem {
+  text-align: center;
+  padding: var(--espaco-g) 0;
+}
+
+@media (min-width: 768px) {
+  .detalhe {
+    grid-template-columns: 1fr 1fr;
+    padding: var(--espaco-g);
+    align-items: center;
+  }
+}
