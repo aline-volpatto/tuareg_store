@@ -74,3 +74,13 @@ main {
   color: var(--cor-bordo);
   font-weight: 600;
 }
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
