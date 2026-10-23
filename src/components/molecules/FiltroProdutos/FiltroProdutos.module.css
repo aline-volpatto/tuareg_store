@@ -1,0 +1,36 @@
+.filtros {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-m);
+  margin-bottom: var(--espaco-m);
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-p);
+}
+
+.campo label {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.campo select {
+  padding: var(--espaco-p);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  background-color: var(--cor-superficie);
+  color: var(--cor-texto);
+  font: inherit;
+}
+
+@media (min-width: 600px) {
+  .filtros {
+    flex-direction: row;
+  }
+
+  .campo {
+    flex: 1;
+  }
+}
