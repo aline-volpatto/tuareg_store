@@ -1,20 +1,31 @@
-import { useState, useMemo } from "react";
+import { useMemo } from "react";
+import { useSearchParams } from "react-router-dom";
 import { useProdutos } from "../../hooks/useProdutos";
 import { filtrarProdutos } from "../../utils/busca";
 import CampoBusca from "../../components/atoms/CampoBusca";
 import ListaProdutos from "../../components/organisms/ListaProdutos";
 import Button from "@mui/material/Button";
+import Carregando from "../../components/atoms/Carregando/Carregando";
 
 function Produtos() {
   const { produtos, carregando, error } = useProdutos();
-  const [termoBusca, setTermoBusca] = useState("");
+  const [parametros, setParametros] = useSearchParams();
+  const termoBusca = parametros.get("busca") ?? "";
+
+  function setTermoBusca(novoTermo) {
+    if (novoTermo === "") {
+      setParametros({}, { replace: true });
+    } else {
+      setParametros({ busca: novoTermo }, { replace: true });
+    }
+  }
 
   const produtosFiltrados = useMemo(() => {
     return filtrarProdutos(produtos, termoBusca);
   }, [produtos, termoBusca]);
 
   if (carregando) {
-    return <p>Carregando produtos...</p>;
+    return <Carregando mensagem="Buscando produtos no hangar..." />;
   }
 
   if (error) {

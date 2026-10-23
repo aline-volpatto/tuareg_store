@@ -1,0 +1,49 @@
+.carregando {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--espaco-m);
+  padding: var(--espaco-g) 0;
+}
+
+.trajetoria {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  border: 2px dashed var(--cor-borda);
+  border-radius: 50%;
+}
+
+.orbita {
+  position: absolute;
+  inset: 0;
+  animation: looping 1.6s linear infinite;
+}
+
+.aviao {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  width: 28px;
+  height: 28px;
+  margin-left: -14px;
+  transform: rotate(90deg);
+  color: var(--cor-bordo);
+}
+
+.mensagem {
+  font-weight: 600;
+  color: var(--cor-texto-suave);
+}
+
+@keyframes looping {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orbita {
+    animation-duration: 4s;
+  }
+}

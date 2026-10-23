@@ -5,6 +5,8 @@ import { formatarMoeda } from "../../utils/moeda";
 import { useCarrinho } from "../../hooks/useCarrinho";
 import Button from "@mui/material/Button";
 import styles from "./DetalheProduto.module.css";
+import Carregando from "../../components/atoms/Carregando/Carregando";
+
 
 function DetalheProduto() {
   const { id } = useParams();
@@ -29,7 +31,7 @@ function DetalheProduto() {
   }, [id]);
 
   if (carregando) {
-    return <p>Carregando produto...</p>;
+    return <Carregando mensagem="Buscando produtos no hangar..." />;
   }
 
   if (erro) {

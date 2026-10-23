@@ -1,9 +1,14 @@
 import dadosLocais from "../../db.json";
+import { esperar } from "../utils/esperar";
+
 
 const URL_API = "http://localhost:3001";
 const jsonServer = import.meta.env.VITE_USAR_JSON_SERVER === "true"
+const ATRASO_SIMULADO = 3000;
 
 export async function buscarProdutos() {
+    await esperar(ATRASO_SIMULADO);
+
     if (!jsonServer){
         return dadosLocais.produtos;
     }
@@ -25,6 +30,8 @@ export async function buscarProdutos() {
 
 
 export async function buscarProdutoPorId(id) {
+
+
   if (!jsonServer) {                                   
     const produto = dadosLocais.produtos.find((produto) => produto.id === id);
     return produto ?? null;                                

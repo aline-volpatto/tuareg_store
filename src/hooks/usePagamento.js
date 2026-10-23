@@ -1,11 +1,12 @@
 import { useState } from 'react';
+import { esperar } from "../utils/esperar";
 
 export function usePagamento() {
     const [processando, setProcessando] = useState(false);
 
     async function processarCompra(callback) {
         setProcessando(true);
-        await new Promise((resolve) => setTimeout(resolve, 3000));
+        await esperar(3000);
         callback();
         setProcessando(false);
     }
