@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useProdutos } from "../../hooks/useProdutos";
+import { useDebounce } from "../../hooks/useDebounce";
 import { filtrarProdutos } from "../../utils/busca";
 import CampoBusca from "../../components/atoms/CampoBusca";
 import ListaProdutos from "../../components/organisms/ListaProdutos";
@@ -11,6 +12,7 @@ function Produtos() {
   const { produtos, carregando, error } = useProdutos();
   const [parametros, setParametros] = useSearchParams();
   const termoBusca = parametros.get("busca") ?? "";
+  const termoComAtraso = useDebounce(termoBusca);
 
   function setTermoBusca(novoTermo) {
     if (novoTermo === "") {
@@ -20,9 +22,10 @@ function Produtos() {
     }
   }
 
-  const produtosFiltrados = useMemo(() => {
-    return filtrarProdutos(produtos, termoBusca);
-  }, [produtos, termoBusca]);
+  const produtosFiltrados = useMemo(
+  () => filtrarProdutos(produtos, termoComAtraso),
+  [produtos, termoComAtraso]
+);
 
   if (carregando) {
     return <Carregando mensagem="Buscando produtos no hangar..." />;
@@ -41,32 +44,32 @@ function Produtos() {
       <h1>Produtos</h1>
       <CampoBusca valor={termoBusca} aoMudar={setTermoBusca} />
 
-{termoBusca !== "" && (
- <Button
-    variant="outlined"
-    onClick={() => setTermoBusca("")}
-    sx={{
-      color: "var(--cor-preto)",
-      borderColor: "var(--cor-preto)",
-      fontWeight: 600,
-      textTransform: "none",
-      marginBottom: "var(--espaco-m)",
-      "&:hover": {
-        borderColor: "var(--cor-bordo)",
-        color: "var(--cor-bordo)",
-        backgroundColor: "transparent",
-      },
-    }}
-  >
-    Limpar busca
-  </Button>
-)}
+      {termoBusca !== "" && (
+        <Button
+          variant="outlined"
+          onClick={() => setTermoBusca("")}
+          sx={{
+            color: "var(--cor-preto)",
+            borderColor: "var(--cor-preto)",
+            fontWeight: 600,
+            textTransform: "none",
+            marginBottom: "var(--espaco-m)",
+            "&:hover": {
+              borderColor: "var(--cor-bordo)",
+              color: "var(--cor-bordo)",
+              backgroundColor: "transparent",
+            },
+          }}
+        >
+          Limpar busca
+        </Button>
+      )}
 
-{produtosFiltrados.length === 0 ? (
-  <p>Nenhum produto encontrado.</p>
-) : (
-  <ListaProdutos produtos={produtosFiltrados} />
-)}
+      {produtosFiltrados.length === 0 ? (
+        <p>Nenhum produto encontrado.</p>
+      ) : (
+        <ListaProdutos produtos={produtosFiltrados} />
+      )}
     </section>
   );
 }
