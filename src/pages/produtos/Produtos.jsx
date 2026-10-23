@@ -7,25 +7,44 @@ import CampoBusca from "../../components/atoms/CampoBusca";
 import ListaProdutos from "../../components/organisms/ListaProdutos";
 import Button from "@mui/material/Button";
 import Carregando from "../../components/atoms/Carregando/Carregando";
+import FiltroProdutos from "../../components/molecules/FiltroProdutos/FiltroProdutos";
+import { filtrarPorCategoria } from "../../utils/filtrarPorCategoria";
+import { ordenarProdutos } from "../../utils/ordenarProdutos";
 
 function Produtos() {
   const { produtos, carregando, error } = useProdutos();
   const [parametros, setParametros] = useSearchParams();
   const termoBusca = parametros.get("busca") ?? "";
+  const categoria = parametros.get("categoria") ?? "";
+  const ordem = parametros.get("ordem") ?? "";
   const termoComAtraso = useDebounce(termoBusca);
 
-  function setTermoBusca(novoTermo) {
-    if (novoTermo === "") {
-      setParametros({}, { replace: true });
-    } else {
-      setParametros({ busca: novoTermo }, { replace: true });
-    }
+   const categorias = useMemo(
+    () => [...new Set(produtos.map((produto) => produto.categoria))],
+    [produtos],
+  );
+
+
+  function atualizarParametro(chave, valor) {
+    setParametros(
+      (parametrosAnteriores) => {
+        const novosParametros = new URLSearchParams(parametrosAnteriores);
+        if (valor === "") {
+          novosParametros.delete(chave);
+        } else {
+          novosParametros.set(chave, valor);
+        }
+        return novosParametros;
+      },
+      { replace: true },
+    );
   }
 
-  const produtosFiltrados = useMemo(
-  () => filtrarProdutos(produtos, termoComAtraso),
-  [produtos, termoComAtraso]
-);
+  const produtosFiltrados = useMemo(() => {
+    const porBusca = filtrarProdutos(produtos, termoComAtraso);
+    const porCategoria = filtrarPorCategoria(porBusca, categoria);
+    return ordenarProdutos(porCategoria, ordem);
+  }, [produtos, termoComAtraso, categoria, ordem]);
 
   if (carregando) {
     return <Carregando mensagem="Buscando produtos no hangar..." />;
@@ -42,12 +61,25 @@ function Produtos() {
   return (
     <section>
       <h1>Produtos</h1>
-      <CampoBusca valor={termoBusca} aoMudar={setTermoBusca} />
+      <CampoBusca
+        valor={termoBusca}
+        aoMudar={(novoTermo) => atualizarParametro("busca", novoTermo)}
+      />
 
-      {termoBusca !== "" && (
+      <FiltroProdutos
+        categorias={categorias}
+        categoria={categoria}
+        ordem={ordem}
+        aoMudarCategoria={(novaCategoria) =>
+          atualizarParametro("categoria", novaCategoria)
+        }
+        aoMudarOrdem={(novaOrdem) => atualizarParametro("ordem", novaOrdem)}
+      />
+
+      {(termoBusca !== "" || categoria !== "" || ordem !== "") && (
         <Button
           variant="outlined"
-          onClick={() => setTermoBusca("")}
+          onClick={() => setParametros({}, { replace: true })}
           sx={{
             color: "var(--cor-preto)",
             borderColor: "var(--cor-preto)",
@@ -61,7 +93,7 @@ function Produtos() {
             },
           }}
         >
-          Limpar busca
+          Limpar filtro
         </Button>
       )}
 
