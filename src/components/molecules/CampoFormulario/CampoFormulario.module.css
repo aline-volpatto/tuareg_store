@@ -22,7 +22,7 @@ font-weight: 600;
 
 .input:focus {
   outline: none;
-  border-color: var(--cor-preto);
+  border-color: var(--cor-texto);
 }
 
 .input[aria-invalid="true"] {

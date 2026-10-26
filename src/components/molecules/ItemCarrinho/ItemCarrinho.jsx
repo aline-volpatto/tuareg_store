@@ -11,7 +11,7 @@ const estiloBotaoQuantidade = {
   height: 36,
   fontSize: "1.2rem",
   fontWeight: 700,
-  color: "var(--cor-preto)",
+  color: "var(--cor-texto)",
 };
 
 function ItemCarrinho({ item }) {

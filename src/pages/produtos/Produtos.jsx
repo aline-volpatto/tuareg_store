@@ -81,8 +81,8 @@ function Produtos() {
           variant="outlined"
           onClick={() => setParametros({}, { replace: true })}
           sx={{
-            color: "var(--cor-preto)",
-            borderColor: "var(--cor-preto)",
+            color: "var(--cor-texto)",
+            borderColor: "var(--cor-texto)",
             fontWeight: 600,
             textTransform: "none",
             marginBottom: "var(--espaco-m)",

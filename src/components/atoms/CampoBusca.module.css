@@ -20,6 +20,6 @@
 }
 
 .input:focus {
-  border-color: var(--cor-preto);
+  border-color: var(--cor-texto);
   outline: none;
 }
