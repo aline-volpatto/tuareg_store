@@ -26,9 +26,9 @@ function Pagamento() {
   function processarPagamento(dados) {
     processarCompra(() => {
       if (cartaoSuspeito(dados.numeroCartao)) {
-        navigate("/falha");
+        navigate("/falha", { replace: true });
       } else {
-        navigate("/sucesso");
+        navigate("/sucesso", { state: { compraAprovada: true }, replace: true });
       }
     });
   }

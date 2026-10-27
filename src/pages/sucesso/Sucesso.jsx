@@ -1,15 +1,23 @@
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useLocation } from "react-router-dom";
 import { useCarrinho } from "../../hooks/useCarrinho";
 import PaginaMensagem from "../../components/templates/PaginaMensagem/PaginaMensagem";
-import logot  from "../../assets/logot.png";
+import logot from "../../assets/logot.png";
 
 function Sucesso() {
   const { limparCarrinho } = useCarrinho();
+  const location = useLocation();
+  const compraAprovada = location.state?.compraAprovada === true;
 
   useEffect(() => {
-    limparCarrinho();
-  }, [limparCarrinho]);
+    if (compraAprovada) {
+      limparCarrinho();
+    }
+  }, [compraAprovada, limparCarrinho]);
+
+  if (!compraAprovada) {
+    return <Navigate to="/produtos" replace />;
+  }
 
   return (
     <PaginaMensagem icone={logot} titulo="Compra realizada com sucesso!">
