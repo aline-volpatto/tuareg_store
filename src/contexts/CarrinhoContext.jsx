@@ -1,35 +1,27 @@
-import {
-  createContext,
-  useState,
-  useMemo,
-  useCallback,
-  useEffect,
-} from "react";
+import { useState, useMemo, useCallback, useEffect } from "react";
+import PropTypes from "prop-types";
+import { CarrinhoContext } from "./Contextos";
 import { calcularTotal, calcularQuantidadeTotal } from "../utils/carrinho";
-
-export const CarrinhoContext = createContext(null);
 
 const CHAVE_CARRINHO = "carrinho-tuareg";
 
 export function CarrinhoProvider({ children }) {
   const [itens, setItens] = useState(() => {
-
-  try {
-    const carrinhoGuardado = localStorage.getItem(CHAVE_CARRINHO);
-    return carrinhoGuardado ? JSON.parse(carrinhoGuardado) : [];
-  } catch {
-    return [];
-  }
-});
+    try {
+      const carrinhoGuardado = localStorage.getItem(CHAVE_CARRINHO);
+      return carrinhoGuardado ? JSON.parse(carrinhoGuardado) : [];
+    } catch {
+      return [];
+    }
+  });
 
   useEffect(() => {
-    try{
-    localStorage.setItem(CHAVE_CARRINHO, JSON.stringify(itens));
-  } catch (error) {
-    console.error("Erro ao salvar o carrinho no localStorage:", error);
-  }
-}, [itens]);
-
+    try {
+      localStorage.setItem(CHAVE_CARRINHO, JSON.stringify(itens));
+    } catch (error) {
+      console.error("Erro ao salvar o carrinho no localStorage:", error);
+    }
+  }, [itens]);
 
   const adicionarItem = useCallback((item) => {
     setItens((itensAnteriores) => {
@@ -86,19 +78,34 @@ export function CarrinhoProvider({ children }) {
   );
   const valorTotal = useMemo(() => calcularTotal(itens), [itens]);
 
+  const valor = useMemo(
+    () => ({
+      itens,
+      adicionarItem,
+      removerItem,
+      alterarQuantidade,
+      limparCarrinho,
+      quantidadeTotal,
+      valorTotal,
+    }),
+    [
+      itens,
+      adicionarItem,
+      removerItem,
+      alterarQuantidade,
+      limparCarrinho,
+      quantidadeTotal,
+      valorTotal,
+    ],
+  );
+
   return (
-    <CarrinhoContext.Provider
-      value={{
-        itens,
-        adicionarItem,
-        removerItem,
-        alterarQuantidade,
-        limparCarrinho,
-        quantidadeTotal,
-        valorTotal,
-      }}
-    >
+    <CarrinhoContext.Provider value={valor}>
       {children}
     </CarrinhoContext.Provider>
   );
 }
+
+CarrinhoProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};

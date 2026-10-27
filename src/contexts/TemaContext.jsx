@@ -1,9 +1,8 @@
-import { createContext, useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { TemaContext } from "./Contextos";
 import PropTypes from "prop-types";
 
 const CHAVE_TEMA = "tema-tuareg";
-
-export const TemaContext = createContext(null);
 
 function obterTemaInicial() {
   try {
@@ -15,7 +14,9 @@ function obterTemaInicial() {
     console.error(error);
   }
 
-  const sistemaEscuro = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const sistemaEscuro = window.matchMedia(
+    "(prefers-color-scheme: dark)",
+  ).matches;
   return sistemaEscuro ? "escuro" : "claro";
 }
 
@@ -43,4 +44,3 @@ export function TemaProvider({ children }) {
 TemaProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
-
