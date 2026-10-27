@@ -22,7 +22,7 @@ function ItemCarrinho({ item }) {
       <img src={item.imagem} alt={item.nome} className={styles.imagem} />
 
       <div className={styles.info}>
-        <h3 className={styles.nome}>{item.nome}</h3>
+        <h2 className={styles.nome}>{item.nome}</h2>
         <p className={styles.unitario}>
           Valor unitário: {formatarMoeda(item.preco)}
         </p>
