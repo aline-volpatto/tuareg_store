@@ -8,7 +8,7 @@ import Sucesso from "./pages/sucesso/Sucesso";
 import Falha from "./pages/falha/Falha";
 import NaoEncontrada from "./pages/naoEncontrada/NaoEncontrada";
 import RotaPrivada from "./routes/RotaPrivada";
-import "./App.css";
+
 
 function App() {
   return (
