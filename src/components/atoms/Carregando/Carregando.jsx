@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import styles from "./Carregando.module.css";
 
-function Carregando({ mensagem }) {
+function Carregando({ mensagem = "Preparando para decolar..." }) {
   return (
     <div className={styles.carregando} role="status" aria-live="polite">
       <div className={styles.trajetoria} aria-hidden="true">
@@ -20,8 +20,5 @@ Carregando.propTypes = {
   mensagem: PropTypes.string,
 };
 
-Carregando.defaultProps = {
-  mensagem: "Preparando para decolar...",
-};
 
 export default Carregando;
