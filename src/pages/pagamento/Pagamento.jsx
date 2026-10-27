@@ -73,7 +73,6 @@ function Pagamento() {
           sx={{
             marginTop: "var(--espaco-m)",
             backgroundColor: "var(--cor-bordo)",
-            backgroundColor: "var(--cor-bordo)",
             fontWeight: 600,
             textTransform: "none",
             "&:hover": { backgroundColor: "var(--cor-bordo-escuro)" },
@@ -84,7 +83,7 @@ function Pagamento() {
             },
           }}
         >
-          {processando && <span className={styles.spinner}></span>}
+          {processando && <span className={styles.spinner} aria-hidden="true"></span>}
           {processando ? "Processando compra..." : "Realizar pagamento"}
         </Button>
       </form>

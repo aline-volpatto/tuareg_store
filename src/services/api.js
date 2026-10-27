@@ -23,7 +23,7 @@ export async function buscarProdutos() {
         return await resposta.json();
     } catch (erro){
         console.error(erro);
-        throw new Error("Não foi possível carregar os produtos, tente novamente mais tarde! Bons voos!");
+        throw new Error("Não foi possível carregar os produtos, tente novamente mais tarde! Bons voos!", { cause: erro });
     }
 }
         
@@ -51,6 +51,6 @@ export async function buscarProdutoPorId(id) {
     return await resposta.json();
   } catch (erro) {
     console.error(erro);
-    throw new Error("Não foi possível carregar o produto, tente novamente mais tarde! Bons voos!");
+    throw new Error("Não foi possível carregar o produto, tente novamente mais tarde! Bons voos!",  { cause: erro });
   }
 }

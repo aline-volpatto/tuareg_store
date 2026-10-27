@@ -1,4 +1,4 @@
-import ProdutoCard from "../molecules/ProdutoCard";
+import ProdutoCard from "../../molecules/ProdutoCard/ProdutoCard";
 import styles from "./ListaProdutos.module.css";
 
 function ListaProdutos({ produtos }) {

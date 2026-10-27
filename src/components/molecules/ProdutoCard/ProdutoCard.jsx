@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import { formatarMoeda } from "../../utils/moeda";
+import { formatarMoeda } from "../../../utils/moeda";
 import PropTypes from 'prop-types';
-import { useCarrinho } from "../../hooks/useCarrinho";
+import { useCarrinho } from "../../../hooks/useCarrinho";
 import styles from "./ProdutoCard.module.css";
 import Button from "@mui/material/Button";
 
@@ -13,7 +13,7 @@ function ProdutoCard({ produto }) {
   return (
     <article className={styles.card}>
       <img src={produto.imagem} alt={produto.nome} className={styles.imagem}   />
-      <h3 className={styles.nome}>{produto.nome}</h3>
+      <h2 className={styles.nome}>{produto.nome}</h2>
       <p className={styles.categoria}>{produto.categoria}</p> 
       <p className={styles.preco}>{formatarMoeda(produto.preco)}</p>
       <Link to={`/produtos/${produto.id}`} className={styles.detalhes}>
