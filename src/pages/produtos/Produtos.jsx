@@ -4,7 +4,7 @@ import { useProdutos } from "../../hooks/useProdutos";
 import { useDebounce } from "../../hooks/useDebounce";
 import { filtrarProdutos } from "../../utils/busca";
 import CampoBusca from "../../components/atoms/CampoBusca";
-import ListaProdutos from "../../components/organisms/ListaProdutos";
+import ListaProdutos from "../../components/organisms/ListaProdutos/ListaProdutos";
 import Button from "@mui/material/Button";
 import Carregando from "../../components/atoms/Carregando/Carregando";
 import FiltroProdutos from "../../components/molecules/FiltroProdutos/FiltroProdutos";
