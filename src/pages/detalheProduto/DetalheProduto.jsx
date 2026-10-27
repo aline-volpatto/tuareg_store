@@ -31,7 +31,7 @@ function DetalheProduto() {
   }, [id]);
 
   if (carregando) {
-    return <Carregando mensagem="Buscando produtos no hangar..." />;
+    return <Carregando mensagem="Buscando produto no hangar..." />;
   }
 
   if (erro) {
