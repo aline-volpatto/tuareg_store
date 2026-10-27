@@ -41,3 +41,13 @@
     padding: var(--espaco-g);
   }
 }
+
+.aviso {
+  background-color: var(--cor-superficie);
+  border-left: 4px solid var(--cor-amarelo);
+  border-radius: var(--raio);
+  padding: var(--espaco-m);
+  margin-bottom: var(--espaco-m);
+  color: var(--cor-texto);
+  font-size: 0.95rem;
+}
