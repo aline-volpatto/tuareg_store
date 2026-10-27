@@ -50,8 +50,7 @@ function ItemCarrinho({ item }) {
         </div>
 
         <p className={styles.subtotal}>
-          {" "}
-          {formatarMoeda(calcularSubtotal(item))}
+          Subtotal: {formatarMoeda(calcularSubtotal(item))}
         </p>
 
         <Button
