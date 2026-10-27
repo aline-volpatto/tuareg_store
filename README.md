@@ -1,102 +1,206 @@
-# Closet Express 
+# Tuareg Store
 
-SPA de checkout simulado para uma loja de roupas virtual, construída em React como projeto avaliativo do módulo de Front-End React (SENAI/SCTEC).
+Aplicação de comércio eletrônico desenvolvida em React como projeto avaliativo final do Módulo 2 – Front-End React do programa SCTEC, do SENAI/SC.
 
-## Sobre o projeto
+A aplicação simula a jornada de compra completa da loja da TUAREG: vitrine de produtos, página de detalhe, carrinho, pagamento e resultado da compra. O projeto dá continuidade ao mini projeto de checkout desenvolvido durante o módulo.
 
-Uma loja virtual precisa de uma interface para finalizar compras, com navegação fluida entre telas, validação de formulário e uma simulação de pagamento — sem back-end real. O usuário confere os produtos do carrinho, informa dados fictícios de cartão, e recebe o resultado da compra (aprovada ou reprovada) de forma instantânea, sem recarregar a página.
+> **Aviso:** este é um projeto acadêmico. A aplicação não é uma loja real e não realiza vendas. Nenhum dado de pagamento é enviado ou armazenado. A marca TUAREG é utilizada com autorização do proprietário. Os produtos oficiais estão disponíveis na [loja oficial da TUAREG](https://reserva.ink/usetuareg).
 
-O projeto foi desenvolvido individualmente, praticando os principais conceitos do módulo: componentes funcionais, props, listas, hooks (`useState`, custom hooks), formulários com validação, rotas dinâmicas e simulação assíncrona.
+## Sumário
 
-##  Tecnologias utilizadas
+- [Links](#links)
+- [Funcionalidades](#funcionalidades)
+- [Funcionalidades adicionais](#funcionalidades-adicionais)
+- [Tecnologias](#tecnologias)
+- [Execução local](#execução-local)
+- [Scripts](#scripts)
+- [Testes](#testes)
+- [Estrutura do projeto](#estrutura-do-projeto)
+- [Rotas](#rotas)
+- [Acessibilidade](#acessibilidade)
+- [Fluxo de trabalho](#fluxo-de-trabalho)
+- [Créditos](#créditos)
+- [Autoria](#autoria)
 
-- **React** + **Vite** — SPA, sem back-end
-- **React Router** — rotas e navegação entre telas, incluindo rota dinâmica (`/resultado/:status`)
-- **React Hook Form** + **Zod** — gerenciamento e validação do formulário de pagamento
-- **CSS Modules** — estilização isolada por componente, sem bibliotecas externas
-- **Google Fonts** — Inter (texto), Playfair Display (títulos) e Cormorant Garamond (logotipo da loja)
-- **Git/GitHub** — controle de versão com fluxo de branches (`main` → `develop` → `feature/*`)
+## Links
 
-##  Funcionalidades
+| Recurso | Endereço |
+|---|---|
+| Aplicação publicada | [LINK DO NETLIFY](LINK) |
+| Quadro do projeto (Trello) | [LINK DO TRELLO] (https://trello.com/b/BzcbxSxB/tuareg-store-final) |
+| Vídeo de apresentação | [LINK DO VÍDEO](LINK) |
 
-- Carrinho fixo com 3 produtos, subtotal por item e total geral, formatados em reais
-- Navegação entre carrinho → pagamento → resultado, com o valor total passado entre as telas via `state` do React Router
-- Formulário de pagamento com validação de titular, número do cartão (16 dígitos, desconsiderando espaços/hífens), validade (MM/AA) e CVV
-- Regra de simulação: cartões com todos os dígitos iguais são identificados como tentativa de fraude
-- Processamento assíncrono simulado (~3s), com botão desabilitado durante a espera, via custom hook `usePagamento`
-- **Rota dinâmica** (`/resultado/:status`) para as telas de sucesso e falha — diferencial do desafio, usando `useParams`
-- Componentização com `ItemCarrinho`, `CampoFormulario`, `Header` e `Footer`, todos reutilizáveis via props ou usados em conjunto com as rotas
-- Identidade visual de loja: cabeçalho com o nome "Closet Express", paleta em tons de preto, branco e marrom, e rodapé fixo em todas as páginas
-- Layout responsivo (mobile-first) e acessível — validado com Lighthouse: **100/100 em Acessibilidade**, **100/100 em Boas Práticas**
+## Funcionalidades
 
-## Estrutura de pastas
+- Listagem de produtos com tratamento dos estados de carregamento, erro e lista vazia
+- Página de detalhe do produto, com tratamento de produto inexistente
+- Busca de produtos por nome
+- Carrinho com inclusão, remoção e alteração de quantidade, limitada ao estoque disponível
+- Cálculo do valor total e contador de itens no cabeçalho
+- Formulário de pagamento com validação por esquema (React Hook Form e Zod)
+- Simulação de processamento do pagamento, com páginas de compra aprovada e recusada
+- Rota de pagamento protegida, acessível somente com itens no carrinho
+- Rota de compra aprovada protegida, garantindo que o carrinho seja esvaziado apenas após uma compra concluída
+- Página personalizada para rotas inexistentes
+- Layout responsivo, desenvolvido com abordagem mobile first
 
-```
-checkout-react/
-- src/
-  - pages/
-    - carrinho/ (Carrinho.jsx + Carrinho.module.css)
-    - pagamento/ (Pagamento.jsx + Pagamento.module.css)
-    - resultado/ (Resultado.jsx + Resultado.module.css, rota dinâmica)
-  - components/
-    - itemCarrinho/ (ItemCarrinho.jsx + .module.css)
-    - campoFormulario/ (CampoFormulario.jsx + .module.css)
-    - header/ (Header.jsx + .module.css, nome da loja)
-    - footer/ (Footer.jsx + .module.css)
-  - hooks/
-    - usePagamento.js (custom hook do processamento assíncrono)
-  - utils/
-    - pagamentoSchema.js (schema de validação com Zod)
-    - verificarGolpe.js (regra de detecção de cartão suspeito)
-  - data/
-    - produtos.js (array fixo de produtos)
-  - App.jsx (configuração das rotas)
-  - main.jsx (ponto de entrada, com BrowserRouter)
-```
+## Funcionalidades adicionais
 
-##  Como executar
+| Funcionalidade | Descrição |
+|---|---|
+| Carrinho persistente | Os itens do carrinho são armazenados no `localStorage` e preservados após o recarregamento da página. |
+| Busca sincronizada com a URL | O termo de busca é mantido na query string por meio do `useSearchParams`, permitindo compartilhar e recarregar a pesquisa. |
+| Debounce na busca | O hook `useDebounce` adia a filtragem até que o usuário conclua a digitação. |
+| Filtro e ordenação | Filtro por categoria e ordenação por preço ou nome, ambos mantidos na URL. |
+| Tema escuro | Alternância entre os temas claro e escuro com Context API, respeitando a preferência do sistema operacional e preservando a escolha do usuário. |
+| Teste de componente | Testes do componente `CampoBusca` com Testing Library, incluindo a verificação do rótulo acessível. |
+| Indicador de carregamento | Atraso simulado nas requisições e indicador animado exibido durante o carregamento dos dados. |
+
+## Tecnologias
+
+| Tecnologia | Finalidade |
+|---|---|
+| [React](https://react.dev/) e [Vite](https://vite.dev/) | Biblioteca de interface e ferramenta de build |
+| [React Router](https://reactrouter.com/) | Roteamento e parâmetros de URL |
+| Context API | Estado global do carrinho e do tema |
+| [React Hook Form](https://react-hook-form.com/) e [Zod](https://zod.dev/) | Gerenciamento e validação do formulário de pagamento |
+| [Material UI](https://mui.com/) | Componentes de interface (botões e indicador de quantidade) |
+| CSS Modules | Estilização com escopo por componente |
+| PropTypes | Validação das propriedades dos componentes |
+| [json-server](https://github.com/typicode/json-server) | API REST local (uso opcional) |
+| [Vitest](https://vitest.dev/) e [Testing Library](https://testing-library.com/) | Testes unitários e de componente |
+
+### Bibliotecas adicionais
+
+As bibliotecas abaixo não constam na lista sugerida e foram incluídas pelos motivos descritos:
+
+| Biblioteca | Justificativa |
+|---|---|
+| `@emotion/react` e `@emotion/styled` | Dependências obrigatórias do Material UI, que utiliza o Emotion como motor de estilização dos seus componentes. |
+| `@testing-library/dom` | Dependência obrigatória (peer dependency) do `@testing-library/react` a partir da versão 16. |
+| `jsdom` | Fornece um ambiente de navegador simulado (`document` e `window`) ao Vitest, necessário para renderizar componentes nos testes. É ativado apenas no arquivo de teste de componente. |
+
+## Execução local
+
+### Pré-requisitos
+
+- Node.js 20.19 ou superior
+- npm
+
+### Instalação
 
 ```bash
-git clone <https://github.com/aline-volpatto/checkout-react>
-cd checkout-react
+git clone https://github.com/aline-volpatto/tuareg_store.git
+cd tuareg_store
 npm install
 npm run dev
 ```
 
-Acesse `http://localhost:5173` no navegador.
+A aplicação estará disponível em `http://localhost:5173`.
 
-##  Como testar o fluxo
+### Utilização do json-server (opcional)
 
-1. Na tela inicial (carrinho), clique em **Finalizar Compra**
-2. Preencha o formulário com dados fictícios:
-   - **Cartão normal** (ex: `1234 5678 9012 3456`) → compra aprovada
-   - **Cartão com todos os dígitos iguais** (ex: `1111 1111 1111 1111`) → tentativa de golpe
+Por padrão, a aplicação lê os produtos diretamente do arquivo `db.json`, o que permite a publicação sem servidor de API. Para utilizar a API local:
 
-##  Uso do debugger
+1. Crie o arquivo `.env.local` na raiz do projeto, com base no `.env.example`:
 
-Durante a criação da pasta itemCarrinho e demais arquivos contidos nesta pasta, me deparei com um erro persistente: Failed to resolve import "./ItemCarrinho.module.css". Does the file exist?, mesmo com o arquivo existindo exatamente no caminho indicado.
+   ```
+   VITE_USAR_JSON_SERVER=true
+   ```
 
-Usei o Console do DevTools do navegador para capturar a mensagem de erro completa (imagem abaixo) e, a partir dela, investiguei metodicamente as possíveis causas, seguido por auxílio de IA: reiniciei o servidor Vite e limpei o cache (node_modules/.vite), verifiquei duplicidade de processos rodando em terminais diferentes, e confirmei via terminal (ls -la, cat) que o arquivo existia com o nome e conteúdo esperados. Como nenhuma dessas hipóteses explicava o erro, fui para o console novamente, onde suspeitei que eu pudesse ter digitado algo erroneamente. Quando cliquei em cima do nome para renomear, percebi um leve desalinhamento em relação à linha superior, ou seja, havia digitado um espaço antes do nome do arquivo. Apaguei a linha, digitei ela novamente e o erro desapareceu, confirmando a suspeita.
+2. Inicie a API em um terminal:
 
-![Imagem do debug](docs/debug.png)
+   ```bash
+   npm run api
+   ```
 
-##  Organização do trabalho (Kanban)
+3. Inicie a aplicação em outro terminal:
 
-Board do Trello com todos os cards: [Kanban - Checkout Express](https://trello.com/b/c1jmAJkY/checkout-express)
+   ```bash
+   npm run dev
+   ```
 
-##  Vídeo de apresentação
+A API estará disponível em `http://localhost:3001/produtos`.
 
-[_LINK DO VIDEO_](https://drive.google.com/file/d/1Xaqc8xfJRLlhQO__yH0jlikD2VqfF9bt/view?usp=sharing)
+## Scripts
 
-##  Melhorias futuras
+| Comando | Descrição |
+|---|---|
+| `npm run dev` | Inicia o servidor de desenvolvimento |
+| `npm run build` | Gera a versão de produção na pasta `dist` |
+| `npm run preview` | Serve localmente a versão de produção |
+| `npm run lint` | Executa a análise estática do código com ESLint |
+| `npm test` | Executa os testes com Vitest |
+| `npm run api` | Inicia o json-server na porta 3001 |
 
-- Persistir o carrinho em `localStorage` para simular continuidade entre sessões
-- Adicionar validação de bandeira do cartão (Visa, Mastercard etc.) via prefixo numérico
-- Testes automatizados (unitários para `verificarGolpe` e `pagamentoSchema`)
-- Dark mode, usando as CSS Custom Properties já estruturadas no `index.css`
+## Testes
 
+```bash
+npm test
+```
 
-##  Autora
+| Escopo | Localização | Cobertura |
+|---|---|---|
+| Funções utilitárias | `src/utils/__tests__` | Formatação de moeda, busca, cálculos do carrinho, filtro por categoria e ordenação |
+| Componente | `src/components/__tests__` | `CampoBusca`: rótulo acessível, valor controlado e disparo da função de alteração |
 
-Aline Volpatto
-[GitHub](https://github.com/aline-volpatto) · [LinkedIn](https://linkedin.com/in/aline-volpatto-95b991294)
+## Estrutura do projeto
+
+Os componentes estão organizados segundo a metodologia Atomic Design:
+
+```
+src/
+├── assets/            Logotipos da marca
+├── components/
+│   ├── atoms/         Elementos básicos (CampoBusca, Carregando, BotaoTema)
+│   ├── molecules/     Composições de átomos (ProdutoCard, ItemCarrinho, FiltroProdutos)
+│   ├── organisms/     Blocos de interface (Header, Footer, ListaProdutos)
+│   ├── templates/     Estruturas de página (Layout, PaginaMensagem)
+│   └── __tests__/     Testes de componentes
+├── contexts/          Contextos do carrinho e do tema
+├── hooks/             Hooks personalizados
+├── pages/             Páginas associadas às rotas
+├── routes/            Proteção de rotas
+├── services/          Comunicação com a API
+└── utils/             Funções puras e respectivos testes
+```
+
+## Rotas
+
+| Rota | Página | Observação |
+|---|---|---|
+| `/produtos` | Listagem de produtos | Busca, filtro e ordenação via query string |
+| `/produtos/:id` | Detalhe do produto | |
+| `/carrinho` | Carrinho | |
+| `/pagamento` | Pagamento | Protegida: exige itens no carrinho |
+| `/sucesso` | Compra aprovada | Protegida: exige compra concluída |
+| `/falha` | Compra recusada | |
+| `*` | Página não encontrada | |
+
+## Acessibilidade
+
+- Estrutura HTML semântica, idioma definido como `pt-BR` e hierarquia de títulos consistente
+- Rótulos associados aos campos e mensagens de erro anunciadas com `aria-invalid`, `aria-describedby` e `role="alert"`
+- Estados de carregamento anunciados com `role="status"` e `aria-live`
+- Botões de ícone com `aria-label` descritivo e elementos decorativos ocultos com `aria-hidden`
+- Indicador de foco visível para navegação por teclado
+- Redução de animações para usuários com `prefers-reduced-motion`
+- Contraste preservado nos temas claro e escuro
+
+## Fluxo de trabalho
+
+- Modelo de branches baseado no Git Flow: `main`, `develop` e branches de trabalho com prefixos `feature/`, `fix/`, `refactor/`, `test/` e `docs/`
+- Integração na `develop` por meio de Pull Requests, com commits pequenos e descritivos
+- Planejamento no Trello, com um cartão por branch contendo descrição e lista de atividades
+
+## Créditos
+
+- Marca, logotipos e estampas: TUAREG, utilizados com autorização do proprietário
+- Imagens dos produtos: loja oficial da TUAREG na plataforma Reserva
+- Dados dos produtos (`db.json`): adaptados para fins acadêmicos
+
+## Autoria
+
+Desenvolvido por **Aline Volpatto**.
+
+[GitHub](https://github.com/aline-volpatto) · [LinkedIn](https://www.linkedin.com/in/aline-volpatto-95b991294)

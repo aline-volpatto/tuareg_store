@@ -1,21 +1,19 @@
-import { useLocation, useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { pagamentoSchema } from "../../utils/pagamentoSchema";
 import { cartaoSuspeito } from "../../utils/verificarGolpe";
 import { usePagamento } from "../../hooks/usePagamento";
-import CampoFormulario from "../../components/campoFormulario/CampoFormulario";
+import { useCarrinho } from "../../hooks/useCarrinho";
+import { formatarMoeda } from "../../utils/moeda";
+import CampoFormulario from "../../components/molecules/CampoFormulario/CampoFormulario";
 import styles from "./Pagamento.module.css";
+import Button from "@mui/material/Button";
 
 function Pagamento() {
-  const localizacao = useLocation();
   const navigate = useNavigate();
   const { processando, processarCompra } = usePagamento();
-  let valorTotal;
-
-  if (localizacao.state) {
-    valorTotal = localizacao.state.valorTotal;
-  }
+  const { valorTotal } = useCarrinho();
 
   const {
     register,
@@ -28,24 +26,21 @@ function Pagamento() {
   function processarPagamento(dados) {
     processarCompra(() => {
       if (cartaoSuspeito(dados.numeroCartao)) {
-        navigate("/resultado/falha");
+        navigate("/falha", { replace: true });
       } else {
-        navigate("/resultado/sucesso");
+        navigate("/sucesso", { state: { compraAprovada: true }, replace: true });
       }
     });
   }
 
   return (
-    <div className={styles.container}>
+    <section className={styles.container}>
       <h1 className={styles.titulo}>Pagamento</h1>
-      <p className={styles.total}>
-        Valor Total:{" "}
-        {valorTotal
-          ? valorTotal.toLocaleString("pt-BR", {
-              style: "currency",
-              currency: "BRL",
-            })
-          : "não informado"}
+      <p className={styles.total}>Valor Total: {formatarMoeda(valorTotal)}</p>
+
+      <p className={styles.aviso} role="note">
+        <strong>Pagamento simulado.</strong> Não insira dados reais de cartão.
+        Nenhuma informação é enviada ou armazenada.
       </p>
 
       <form onSubmit={handleSubmit(processarPagamento)}>
@@ -74,12 +69,32 @@ function Pagamento() {
           error={errors.cvv}
         />
 
-        <button type="submit" className={styles.botao} disabled={processando}>
-          {processando && <span className={styles.spinner}></span>}
+        <Button
+          type="submit"
+          variant="contained"
+          size="large"
+          fullWidth
+          disabled={processando}
+          sx={{
+            marginTop: "var(--espaco-m)",
+            backgroundColor: "var(--cor-bordo)",
+            fontWeight: 600,
+            textTransform: "none",
+            "&:hover": { backgroundColor: "var(--cor-bordo-escuro)" },
+            "&.Mui-disabled": {
+              backgroundColor: "var(--cor-bordo)",
+              color: "#ffffff",
+              opacity: 0.7,
+            },
+          }}
+        >
+          {processando && (
+            <span className={styles.spinner} aria-hidden="true"></span>
+          )}
           {processando ? "Processando compra..." : "Realizar pagamento"}
-        </button>
+        </Button>
       </form>
-    </div>
+    </section>
   );
 }
 

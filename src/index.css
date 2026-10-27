@@ -1,47 +1,96 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
 :root {
-  --cor-fundo: #faf6f0;
-  --cor-texto: #3d3229;
-  --cor-texto-suave: #443931;
-  --cor-borda: #e2d5c3;
-  --cor-destaque: #010201;
-  --cor-erro: #b06a4f;
-  --cor-sucesso: #6f8f6a;
+  /* Cores da TUAREG */
+  --cor-fundo: #faf7f2;
+  --cor-superficie: #ffffff;
+  --cor-texto: #221e1f;
+  --cor-texto-suave: #5c5557;
+  --cor-preto: #221e1f;
+  --cor-amarelo: #fdca30;
+  --cor-bordo: #993132;
+  --cor-bordo-escuro: #7a2627;
+  --cor-borda: #e4ddd3;
+  --cor-erro: #b3261e;
+  --cor-sucesso: #2e7d32;
 
-  --espaco-pequeno: 0.5rem;
-  --espaco-medio: 1rem;
-  --espaco-grande: 2rem;
-
-  --fonte: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --fonte-titulo: 'Playfair Display', Georgia, serif;
+  /* Tipografia e espaçamentos */
+  --fonte: "Inter", system-ui, sans-serif;
+  --raio: 8px;
+  --espaco-p: 8px;
+  --espaco-m: 16px;
+  --espaco-g: 32px;
+  --largura-maxima: 1200px;
 }
 
-* {
+
+:root[data-tema="escuro"] {
+  --cor-fundo: #1a1718;
+  --cor-superficie: #262223;
+  --cor-texto: #f2ede6;
+  --cor-texto-suave: #b8b0a8;
+  --cor-borda: #3d3637;
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  margin: 0;
   font-family: var(--fonte);
   background-color: var(--cor-fundo);
   color: var(--cor-texto);
+  line-height: 1.5;
   min-height: 100vh;
 }
 
-h1 {
-  font-family: var(--fonte-titulo);
-  font-weight: 700;
-  letter-spacing: -0.3px;
-  font-size: 1.8rem;
-  margin: 0;
+img {
+  display: block;
+  max-width: 100%;
 }
 
-h2 {
-  font-family: var(--fonte-titulo);
-  font-weight: 600;
-  font-size: 1.5rem;
+a {
+  color: inherit;
 }
 
-h3 {
-  font-family: var(--fonte-titulo);
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+:focus-visible {
+  outline: 3px solid var(--cor-amarelo);
+  outline-offset: 2px;
+}
+
+main {
+  width: 100%;
+  max-width: var(--largura-maxima);
+  margin: 0 auto;
+  padding: var(--espaco-g) var(--espaco-m);
+}
+
+.link-destaque {
+  color: var(--cor-bordo);
   font-weight: 600;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
 }

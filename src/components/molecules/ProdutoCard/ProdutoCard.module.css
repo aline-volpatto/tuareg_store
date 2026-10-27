@@ -1,0 +1,52 @@
+.card {
+  background-color: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  padding: var(--espaco-m);
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-p);
+  transition: box-shadow 0.2s;
+}
+
+.card:hover {
+  box-shadow: 0 4px 16px rgba(34, 30, 31, 0.12);
+}
+
+.imagem {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  background-color: #ffffff;
+  border-radius: var(--raio);
+}
+
+.nome {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.3;
+  min-height: 2.6em;
+}
+
+.categoria {
+  font-size: 0.85rem;
+  color: var(--cor-texto-suave);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.preco {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.detalhes {
+  color: var(--cor-bordo);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.acao {
+  margin-top: auto;
+  padding-top: var(--espaco-p);
+}

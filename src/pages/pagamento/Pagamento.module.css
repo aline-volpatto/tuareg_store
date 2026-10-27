@@ -1,55 +1,53 @@
 .container {
-  max-width: 500px;
-  margin: 2rem auto;
-  padding: var(--espaco-grande);
-  background: rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  border-radius: 20px;
-  box-shadow: 0 8px 32px rgba(50, 76, 41, 0.15);
+  max-width: 520px;
+  margin: 0 auto;
+  background-color: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-top: 4px solid var(--cor-amarelo);
+  border-radius: var(--raio);
+  padding: var(--espaco-m);
 }
 
 .titulo {
-  margin-bottom: var(--espaco-medio);
+  font-size: 1.75rem;
+  margin-bottom: var(--espaco-p);
 }
 
 .total {
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin-bottom: var(--espaco-grande);
-}
-
-.botao {
-  background-color: var(--cor-destaque);
-  color: white;
-  border: none;
-  border-radius: 6px;
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  cursor: pointer;
-  width: 100%;
-}
-
-.botao:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: var(--espaco-g);
 }
 
 .spinner {
   width: 16px;
   height: 16px;
   border: 2px solid rgba(255, 255, 255, 0.4);
-  border-top-color: white;
+  border-top-color: #ffffff;
   border-radius: 50%;
   display: inline-block;
   animation: girar 0.6s linear infinite;
-  margin-right: 8px;
-  vertical-align: middle;
+  margin-right: var(--espaco-p);
 }
 
 @keyframes girar {
   to {
     transform: rotate(360deg);
   }
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: var(--espaco-g);
+  }
+}
+
+.aviso {
+  background-color: var(--cor-superficie);
+  border-left: 4px solid var(--cor-amarelo);
+  border-radius: var(--raio);
+  padding: var(--espaco-m);
+  margin-bottom: var(--espaco-m);
+  color: var(--cor-texto);
+  font-size: 0.95rem;
 }

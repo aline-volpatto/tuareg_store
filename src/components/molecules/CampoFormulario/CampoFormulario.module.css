@@ -1,0 +1,35 @@
+.grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
+}
+
+.label {
+font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.input {
+  width: 100%;
+  padding: 12px var(--espaco-m);
+  font: inherit;
+  border: 2px solid var(--cor-borda);
+  border-radius: var(--raio);
+  background-color: var(--cor-superficie);
+  color: var(--cor-texto);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--cor-texto);
+}
+
+.input[aria-invalid="true"] {
+  border-color: var(--cor-erro);
+}
+
+.erro {
+  color: var(--cor-erro);
+  font-size: 0.85rem;
+}

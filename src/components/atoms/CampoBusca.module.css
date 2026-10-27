@@ -1,0 +1,25 @@
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-p);
+  margin: var(--espaco-m) 0;
+}
+
+.rotulo {
+  font-weight: 600;
+}
+
+.input {
+  width: 100%;
+  max-width: 480px;
+  padding: 12px var(--espaco-m);
+  font: inherit;
+  border: 2px solid var(--cor-borda);
+  border-radius: var(--raio);
+  background-color: var(--cor-superficie);
+}
+
+.input:focus {
+  border-color: var(--cor-texto);
+  outline: none;
+}

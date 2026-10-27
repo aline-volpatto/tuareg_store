@@ -1,0 +1,64 @@
+.footer {
+  background-color: var(--cor-preto);
+  border-top: 4px solid var(--cor-amarelo);
+  color: #ffffff;
+  margin-top: var(--espaco-g);
+}
+
+.conteudo {
+  max-width: var(--largura-maxima);
+  margin: 0 auto;
+  padding: var(--espaco-g) var(--espaco-m);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--espaco-p);
+  text-align: center;
+}
+
+.marca {
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.link {
+  color: var(--cor-amarelo);
+  font-weight: 600;
+}
+
+.aviso {
+  font-size: 0.8rem;
+  color: #c9c3bb;
+}
+
+@media (min-width: 768px) {
+  .conteudo {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.avisoProjeto {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: #d9d4cc;
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.linkAviso {
+  color: var(--cor-amarelo);
+  font-weight: 600;
+}
+
+.somenteLeitor {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
