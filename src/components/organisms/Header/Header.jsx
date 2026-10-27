@@ -12,7 +12,7 @@ function Header() {
     <header className={styles.header}>
       <div className={styles.conteudo}>
         <Link to="/produtos" className={styles.logo}>
-          <img src={logot} alt="Logo da loja" className={styles.logoImage} />
+          <img src={logot} alt="Tuareg Store" />
         </Link>
 
         <nav aria-label="Menu de navegação" className={styles.nav}>
@@ -22,7 +22,7 @@ function Header() {
           <Link
             to="/carrinho"
             className={styles.link}
-            aria-label={`Carrinho com (${quantidadeTotal} itens)`}
+            aria-label={`Carrinho com ${quantidadeTotal} itens`}
           >
             <Badge
               badgeContent={quantidadeTotal}
