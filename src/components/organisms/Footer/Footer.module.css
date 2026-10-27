@@ -39,3 +39,26 @@
     justify-content: space-between;
   }
 }
+
+.avisoProjeto {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: #d9d4cc;
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.linkAviso {
+  color: var(--cor-amarelo);
+  font-weight: 600;
+}
+
+.somenteLeitor {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
