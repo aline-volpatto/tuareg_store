@@ -38,6 +38,11 @@ function Pagamento() {
       <h1 className={styles.titulo}>Pagamento</h1>
       <p className={styles.total}>Valor Total: {formatarMoeda(valorTotal)}</p>
 
+      <p className={styles.aviso} role="note">
+        <strong>Pagamento simulado.</strong> Não insira dados reais de cartão.
+        Nenhuma informação é enviada ou armazenada.
+      </p>
+
       <form onSubmit={handleSubmit(processarPagamento)}>
         <CampoFormulario
           id="titular"
@@ -83,7 +88,9 @@ function Pagamento() {
             },
           }}
         >
-          {processando && <span className={styles.spinner} aria-hidden="true"></span>}
+          {processando && (
+            <span className={styles.spinner} aria-hidden="true"></span>
+          )}
           {processando ? "Processando compra..." : "Realizar pagamento"}
         </Button>
       </form>
