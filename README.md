@@ -26,9 +26,9 @@ A aplicação simula a jornada de compra completa da loja da TUAREG: vitrine de 
 
 | Recurso | Endereço |
 |---|---|
-| Aplicação publicada | [LINK DO NETLIFY](LINK) |
-| Quadro do projeto (Trello) | [LINK DO TRELLO] (https://trello.com/b/BzcbxSxB/tuareg-store-final) |
-| Vídeo de apresentação | [LINK DO VÍDEO](LINK) |
+| Aplicação publicada | [tuareg-store.netlify.app](https://tuareg-store.netlify.app) |
+| Quadro do projeto (Trello) | [Quadro no Trello](https://trello.com/b/BzcbxSxB) |
+| Vídeo de apresentação | [Assistir no Google Drive](https://drive.google.com/file/d/1XOFFvB-pshVqYzuzoPAxVxbjkXQfUgg8/view?usp=sharing) |
 
 ## Funcionalidades
 
